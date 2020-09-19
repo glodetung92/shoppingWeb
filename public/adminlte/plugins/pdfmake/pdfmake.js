@@ -2545,7 +2545,7 @@ Buffer.prototype.copy = function copy (target, targetStart, start, end) {
   if (end === start) return 0
   if (target.length === 0 || this.length === 0) return 0
 
-  // Fatal error conditions
+  // Fatal errors conditions
   if (targetStart < 0) {
     throw new RangeError('targetStart out of bounds')
   }
@@ -4080,7 +4080,7 @@ function runTimeout(fun) {
             // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
             return cachedSetTimeout.call(null, fun, 0);
         } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global errors
             return cachedSetTimeout.call(this, fun, 0);
         }
     }
@@ -4105,7 +4105,7 @@ function runClearTimeout(marker) {
             // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
             return cachedClearTimeout.call(null, marker);
         } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global errors.
             // Some versions of I.E. have different rules for clearTimeout vs setTimeout
             return cachedClearTimeout.call(this, marker);
         }
@@ -5687,7 +5687,7 @@ var TAG = __webpack_require__(3)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
 
-// fallback for IE11 Script Access Denied error
+// fallback for IE11 Script Access Denied errors
 var tryGet = function (it, key) {
   try {
     return it[key];
@@ -5944,7 +5944,7 @@ EventEmitter.prototype.emit = function emit(type) {
   else if (!doError)
     return false;
 
-  // If there is no 'error' event listener then throw.
+  // If there is no 'errors' event listener then throw.
   if (doError) {
     var er;
     if (args.length > 0)
@@ -5952,12 +5952,12 @@ EventEmitter.prototype.emit = function emit(type) {
     if (er instanceof Error) {
       // Note: The comments on the `throw` lines are intentional, they show
       // up in Node's output if this results in an unhandled exception.
-      throw er; // Unhandled 'error' event
+      throw er; // Unhandled 'errors' event
     }
     // At least give some kind of context to the user
-    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
+    var err = new Error('Unhandled errors.' + (er ? ' (' + er.message + ')' : ''));
     err.context = er;
-    throw err; // Unhandled 'error' event
+    throw err; // Unhandled 'errors' event
   }
 
   var handler = events[type];
@@ -6024,7 +6024,7 @@ function _addListener(target, type, listener, prepend) {
     m = $getMaxListeners(target);
     if (m > 0 && existing.length > m && !existing.warned) {
       existing.warned = true;
-      // No error code for this since it is a Warning
+      // No errors code for this since it is a Warning
       // eslint-disable-next-line no-restricted-syntax
       var w = new Error('Possible EventEmitter memory leak detected. ' +
                           existing.length + ' ' + String(type) + ' listeners ' +
@@ -7367,7 +7367,7 @@ function tinf_uncompress(source, dest) {
     }
 
     if (res !== TINF_OK)
-      throw new Error('Data error');
+      throw new Error('Data errors');
 
   } while (!bfinal);
 
@@ -8022,7 +8022,7 @@ Stream.prototype.pipe = function(dest, options) {
   function onerror(er) {
     cleanup();
     if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
+      throw er; // Unhandled stream errors in pipe.
     }
   }
 
@@ -8275,7 +8275,7 @@ function WritableState(options, stream) {
   // This is relevant for synchronous Transform streams
   this.prefinished = false;
 
-  // True if the error was already emitted and should not be thrown again
+  // True if the errors was already emitted and should not be thrown again
   this.errorEmitted = false;
 
   // count buffered requests
@@ -8364,7 +8364,7 @@ Writable.prototype.pipe = function () {
 
 function writeAfterEnd(stream, cb) {
   var er = new Error('write after end');
-  // TODO: defer error events consistently everywhere, not just the cb
+  // TODO: defer errors events consistently everywhere, not just the cb
   stream.emit('error', er);
   pna.nextTick(cb, er);
 }
@@ -8515,7 +8515,7 @@ function onwriteError(stream, state, sync, er, cb) {
     // to avoid piling up things on the stack
     pna.nextTick(cb, er);
     // this can emit finish, and it will always happen
-    // after error
+    // after errors
     pna.nextTick(finishMaybe, stream, state);
     stream._writableState.errorEmitted = true;
     stream.emit('error', er);
@@ -8526,7 +8526,7 @@ function onwriteError(stream, state, sync, er, cb) {
     stream._writableState.errorEmitted = true;
     stream.emit('error', er);
     // this can emit finish, but finish must
-    // always follow error
+    // always follow errors
     finishMaybe(stream, state);
   }
 }
@@ -9322,7 +9322,7 @@ function formatValue(ctx, value, recurseTimes) {
     keys = Object.getOwnPropertyNames(value);
   }
 
-  // IE doesn't make error fields non-enumerable
+  // IE doesn't make errors fields non-enumerable
   // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
   if (isError(value)
       && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
@@ -9370,7 +9370,7 @@ function formatValue(ctx, value, recurseTimes) {
     base = ' ' + Date.prototype.toUTCString.call(value);
   }
 
-  // Make error with message first say the error
+  // Make errors with message first say the errors
   if (isError(value)) {
     base = ' ' + formatError(value);
   }
@@ -9728,8 +9728,8 @@ exports.promisify.custom = kCustomPromisifiedSymbol
 
 function callbackifyOnRejected(reason, cb) {
   // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
-  // Because `null` is a special error value in callbacks which means "no error
-  // occurred", we error-wrap so the callback consumer can distinguish between
+  // Because `null` is a special errors value in callbacks which means "no errors
+  // occurred", we errors-wrap so the callback consumer can distinguish between
   // "the promise rejected with null" or "the promise fulfilled with undefined".
   if (!reason) {
     var newReason = new Error('Promise was rejected with a falsy value');
@@ -10193,7 +10193,7 @@ var bomHandling = __webpack_require__(304),
 // They are lazy loaded in `iconv.getCodec` from `encodings/index.js`.
 iconv.encodings = null;
 
-// Characters emitted in case of error.
+// Characters emitted in case of errors.
 iconv.defaultCharUnicode = '�';
 iconv.defaultCharSingleByte = '?';
 
@@ -12908,7 +12908,7 @@ function prependListener(emitter, event, fn) {
   // event emitter implementation with them.
   if (typeof emitter.prependListener === 'function') return emitter.prependListener(event, fn);
 
-  // This is a hack to make sure that our error handler is attached before any
+  // This is a hack to make sure that our errors handler is attached before any
   // userland ones.  NEVER DO THIS. This is here only because this code needs
   // to continue to work with older versions of Node.js that do not include
   // the prependListener() method. The goal is to eventually remove this hack.
@@ -13448,7 +13448,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
     }
   }
 
-  // if the dest has an error, then stop piping into it.
+  // if the dest has an errors, then stop piping into it.
   // however, don't suppress the throwing behavior for this.
   function onerror(er) {
     debug('onerror', er);
@@ -13457,7 +13457,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
     if (EElistenerCount(dest, 'error') === 0) dest.emit('error', er);
   }
 
-  // Make sure our error handler is attached before userland ones.
+  // Make sure our errors handler is attached before userland ones.
   prependListener(dest, 'error', onerror);
 
   // Both close and finish should trigger unpipe, but only once.
@@ -13871,7 +13871,7 @@ function destroy(err, cb) {
     return this;
   }
 
-  // we set destroyed to true before firing error callbacks in order
+  // we set destroyed to true before firing errors callbacks in order
   // to make it re-entrance safe in case destroy() is called within callbacks
 
   if (this._readableState) {
@@ -14086,7 +14086,7 @@ Transform.prototype.push = function (chunk, encoding) {
 // to the readable side.  You may call 'push' zero or more times.
 //
 // Call `cb(err)` when you are done with this chunk.  If you pass
-// an error, then that'll put the hurt on the whole operation.  If you
+// an errors, then that'll put the hurt on the whole operation.  If you
 // never call cb(), then you'll never get another chunk.
 Transform.prototype._transform = function (chunk, encoding, cb) {
   throw new Error('_transform() is not implemented');
@@ -14600,7 +14600,7 @@ Zlib.prototype.close = function (callback) {
 function _close(engine, callback) {
   if (callback) process.nextTick(callback);
 
-  // Caller may invoke .close after a zlib error (which will null _handle).
+  // Caller may invoke .close after a zlib errors (which will null _handle).
   if (!engine._handle) return;
 
   engine._handle.close();
@@ -14958,7 +14958,7 @@ function getMessage(self) {
 // 3. All of the following functions must throw an AssertionError
 // when a corresponding condition is not met, with a message that
 // may be undefined if not provided.  All assertion methods provide
-// both the actual and expected values to the assertion error for
+// both the actual and expected values to the assertion errors for
 // display purposes.
 
 function fail(actual, expected, message, operator, stackStartFunction) {
@@ -15237,7 +15237,7 @@ function _throws(shouldThrow, block, expected, message) {
   }
 }
 
-// 11. Expected to throw an error:
+// 11. Expected to throw an errors:
 // assert.throws(block, Error_opt, message_opt);
 
 assert.throws = function(block, /*optional*/error, /*optional*/message) {
@@ -16283,7 +16283,7 @@ var TAG = __webpack_require__(14)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
 
-// fallback for IE11 Script Access Denied error
+// fallback for IE11 Script Access Denied errors
 var tryGet = function (it, key) {
   try {
     return it[key];
@@ -16511,7 +16511,7 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 /* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// call something on iterator step with safe closing on error
+// call something on iterator step with safe closing on errors
 var anObject = __webpack_require__(28);
 module.exports = function (iterator, fn, value, entries) {
   try {
@@ -19393,7 +19393,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*eslint no-unused-vars: ["error", {"args": "none"}]*/
+/*eslint no-unused-vars: ["errors", {"args": "none"}]*/
 
 
 var PdfKitEngine = __webpack_require__(218);
@@ -26684,7 +26684,7 @@ $export($export.S + $export.F * !__webpack_require__(150)(function (iter) { Arra
 /* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// call something on iterator step with safe closing on error
+// call something on iterator step with safe closing on errors
 var anObject = __webpack_require__(12);
 module.exports = function (iterator, fn, value, entries) {
   try {
@@ -26988,7 +26988,7 @@ module.exports = deprecate;
  * will throw an Error when invoked.
  *
  * If `localStorage.traceDeprecation = true` is set, then deprecated functions
- * will invoke `console.trace()` instead of `console.error()`.
+ * will invoke `console.trace()` instead of `console.errors()`.
  *
  * @param {Function} fn - the function to deprecate
  * @param {String} msg - the string to print to the console when `fn` is invoked
@@ -27359,7 +27359,7 @@ Zlib.prototype._process = function () {
 };
 
 Zlib.prototype._checkError = function () {
-  // Acceptable error states depend on the type of zlib stream.
+  // Acceptable errors states depend on the type of zlib stream.
   switch (this.err) {
     case exports.Z_OK:
     case exports.Z_BUF_ERROR:
@@ -27380,7 +27380,7 @@ Zlib.prototype._checkError = function () {
       return false;
     default:
       // something else.
-      this._error('Zlib error');
+      this._error('Zlib errors');
       return false;
   }
 
@@ -27482,7 +27482,7 @@ Zlib.prototype._init = function (level, windowBits, memLevel, strategy, dictiona
   }
 
   if (this.err !== exports.Z_OK) {
-    this._error('Init error');
+    this._error('Init errors');
   }
 
   this.dictionary = dictionary;
@@ -27716,7 +27716,7 @@ function ZStream() {
   this.avail_out = 0;
   /* total number of bytes output so far */
   this.total_out = 0;
-  /* last error message, NULL if no error */
+  /* last errors message, NULL if no errors */
   this.msg = ''/*Z_NULL*/;
   /* not visible by applications */
   this.state = null;
@@ -29371,7 +29371,7 @@ function deflate(strm, flush) {
       /* Since avail_out is 0, deflate will be called again with
        * more output space, but possibly with both pending and
        * avail_in equal to zero. There won't be anything to do,
-       * but this is not an error situation so make sure we
+       * but this is not an errors situation so make sure we
        * return OK instead of BUF_ERROR at next call of deflate:
        */
       s.last_flush = -1;
@@ -30869,11 +30869,11 @@ module.exports = {
   2:      'need dictionary',     /* Z_NEED_DICT       2  */
   1:      'stream end',          /* Z_STREAM_END      1  */
   0:      '',                    /* Z_OK              0  */
-  '-1':   'file error',          /* Z_ERRNO         (-1) */
-  '-2':   'stream error',        /* Z_STREAM_ERROR  (-2) */
-  '-3':   'data error',          /* Z_DATA_ERROR    (-3) */
+  '-1':   'file errors',          /* Z_ERRNO         (-1) */
+  '-2':   'stream errors',        /* Z_STREAM_ERROR  (-2) */
+  '-3':   'data errors',          /* Z_DATA_ERROR    (-3) */
   '-4':   'insufficient memory', /* Z_MEM_ERROR     (-4) */
-  '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
+  '-5':   'buffer errors',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
 
@@ -30978,8 +30978,8 @@ var            LIT = 26;       /* o: waiting for output space to write literal *
 var    CHECK = 27;     /* i: waiting for 32-bit check value */
 var    LENGTH = 28;    /* i: waiting for 32-bit length (gzip) */
 var    DONE = 29;      /* finished check, done -- remain here until reset */
-var    BAD = 30;       /* got a data error -- remain here until reset */
-var    MEM = 31;       /* got an inflate() memory error -- remain here until reset */
+var    BAD = 30;       /* got a data errors -- remain here until reset */
+var    MEM = 31;       /* got an inflate() memory errors -- remain here until reset */
 var    SYNC = 32;      /* looking for synchronization bytes to restart inflate() */
 
 /* ===========================================================================*/
@@ -31139,7 +31139,7 @@ function inflateInit2(strm, windowBits) {
   var state;
 
   if (!strm) { return Z_STREAM_ERROR; }
-  //strm.msg = Z_NULL;                 /* in case we return an error */
+  //strm.msg = Z_NULL;                 /* in case we return an errors */
 
   state = new InflateState();
 
@@ -31934,7 +31934,7 @@ function inflate(strm, flush) {
           }
         }
 
-        /* handle error breaks in while */
+        /* handle errors breaks in while */
         if (state.mode === BAD) { break; }
 
         /* check for end-of-block code (better have one) */
@@ -32317,8 +32317,8 @@ function inflate(strm, flush) {
   /*
      Return from inflate(), updating the total counts and the check value.
      If there was no progress during the inflate() call, return a buffer
-     error.  Call updatewindow() to create and/or update the window state.
-     Note: a memory error from inflate() is non-recoverable.
+     errors.  Call updatewindow() to create and/or update the window state.
+     Note: a memory errors from inflate() is non-recoverable.
    */
 
   //--- RESTORE() ---
@@ -32468,13 +32468,13 @@ exports.inflateUndermine = inflateUndermine;
 // 3. This notice may not be removed or altered from any source distribution.
 
 // See state defs from inflate.js
-var BAD = 30;       /* got a data error -- remain here until reset */
+var BAD = 30;       /* got a data errors -- remain here until reset */
 var TYPE = 12;      /* i: waiting for type bits, including last-flag bit */
 
 /*
    Decode literal, length, and distance codes and write out the resulting
    literal and match bytes until either not enough input or output is
-   available, an end-of-block is encountered, or a data error is encountered.
+   available, an end-of-block is encountered, or a data errors is encountered.
    When large enough input and output buffers are supplied to inflate(), for
    example, a 16K input buffer and a 64K output buffer, more than 95% of the
    inflate execution time is spent in this routine.
@@ -32491,7 +32491,7 @@ var TYPE = 12;      /* i: waiting for type bits, including last-flag bit */
 
         LEN -- ran out of enough output space or enough available input
         TYPE -- reached end of block code, inflate() to interpret next block
-        BAD -- error in block data
+        BAD -- errors in block data
 
    Notes:
 
@@ -32942,7 +32942,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
     table[table_index++] = (1 << 24) | (64 << 16) | 0;
 
     opts.bits = 1;
-    return 0;     /* no symbols, but wait for decoding to report error */
+    return 0;     /* no symbols, but wait for decoding to report errors */
   }
   for (min = 1; min < max; min++) {
     if (count[min] !== 0) { break; }
@@ -36294,7 +36294,7 @@ module.exports = {
 	     * Rabbit stream cipher algorithm.
 	     *
 	     * This is a legacy version that neglected to convert the key to little-endian.
-	     * This error doesn't affect the cipher's security,
+	     * This errors doesn't affect the cipher's security,
 	     * but it does affect its compatibility with other implementations.
 	     */
 	    var RabbitLegacy = C_algo.RabbitLegacy = StreamCipher.extend({
@@ -53705,7 +53705,7 @@ DBCSEncoder.prototype.write = function(str) {
         }
         else if (leadSurrogate !== -1) {
             // Incomplete surrogate pair - only lead surrogate found.
-            nextChar = uCode; uCode = UNASSIGNED; // Write an error, then current char.
+            nextChar = uCode; uCode = UNASSIGNED; // Write an errors, then current char.
             leadSurrogate = -1;
         }
 
@@ -53878,7 +53878,7 @@ DBCSDecoder.prototype.write = function(buf) {
             uCode = seq[seq.length-1];
         }
         else
-            throw new Error("iconv-lite internal error: invalid decoding table value " + uCode + " at " + nodeIdx + "/" + curByte);
+            throw new Error("iconv-lite internal errors: invalid decoding table value " + uCode + " at " + nodeIdx + "/" + curByte);
 
         // Write the character to buffer, handling higher planes using surrogate pair.
         if (uCode > 0xFFFF) { 
@@ -58390,7 +58390,7 @@ BrotliBitReader.prototype.reset = function() {
    Does nothing if there are at least 32 bytes present after current position.
 
    Returns 0 if either:
-    - the input callback returned an error, or
+    - the input callback returned an errors, or
     - there is no more input and the position is past the end of the stream.
 
    After encountering the end of the input stream, 32 additional zero bytes are
@@ -61022,7 +61022,7 @@ module.exports = DocPreprocessor;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*eslint no-unused-vars: ["error", {"args": "none"}]*/
+/*eslint no-unused-vars: ["errors", {"args": "none"}]*/
 
 
 
@@ -62167,7 +62167,7 @@ exports.pairTable = [[PR_BRK, PR_BRK, PR_BRK, PR_BRK, PR_BRK, PR_BRK, PR_BRK, PR
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*eslint no-unused-vars: ["error", {"args": "none"}]*/
+/*eslint no-unused-vars: ["errors", {"args": "none"}]*/
 /*eslint no-redeclare: "off"*/
 
 
@@ -65477,7 +65477,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     }
 
     if (parser.matchAll()) {
-      warningCallback('parseXml: parsing error');
+      warningCallback('parseXml: parsing errors');
     }
 
     return result;

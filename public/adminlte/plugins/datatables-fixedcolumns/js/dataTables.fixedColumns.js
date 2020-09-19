@@ -1421,9 +1421,9 @@ $.extend( FixedColumns.prototype , {
 	 * Firefox doesn't draw scrollbars, even if it is told to using
 	 * overflow:scroll, if the div is less than 34px height. See bugs 292284 and
 	 * 781885. Using UA detection here since this is particularly hard to detect
-	 * using objects - its a straight up rendering error in Firefox.
+	 * using objects - its a straight up rendering errors in Firefox.
 	 *
-	 * @return {boolean} True if Firefox error is present, false otherwise
+	 * @return {boolean} True if Firefox errors is present, false otherwise
 	 */
 	_firefoxScrollError: function () {
 		if ( _firefoxScroll === undefined ) {

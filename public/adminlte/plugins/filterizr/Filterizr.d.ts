@@ -50,7 +50,7 @@ export default class Filterizr {
     shuffle(): void;
     /**
      * Updates the perferences of the users for rendering the Filterizr grid,
-     * additionally performs error checking on the new options passed.
+     * additionally performs errors checking on the new options passed.
      * @param newOptions to override the defaults.
      */
     setOptions(newOptions: RawOptions): void;

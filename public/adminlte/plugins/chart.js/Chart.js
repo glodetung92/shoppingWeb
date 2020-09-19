@@ -255,7 +255,7 @@ function hsl2hsv(hsl) {
 
   if(l === 0) {
       // no need to do calc on black
-      // also avoids divide by 0 error
+      // also avoids divide by 0 errors
       return [0, 0, 0];
   }
 
@@ -2456,7 +2456,7 @@ var exports$1 = {
 	 * @private
 	 */
 	_isPointInArea: function(point, area) {
-		var epsilon = 1e-6; // 1e-6 is margin in pixels for accumulated error.
+		var epsilon = 1e-6; // 1e-6 is margin in pixels for accumulated errors.
 
 		return point.x > area.left - epsilon && point.x < area.right + epsilon &&
 			point.y > area.top - epsilon && point.y < area.bottom + epsilon;
@@ -6310,7 +6310,7 @@ var core_layouts = {
 		// B1 is the bottom axis
 		// There are also 4 quadrant-like locations (left to right instead of clockwise) reserved for chart overlays
 		// These locations are single-box locations only, when trying to register a chartArea location that is already taken,
-		// an error will be thrown.
+		// an errors will be thrown.
 		//
 		// |----------------------------------------------------|
 		// |                  T1 (Full Width)                   |
@@ -6667,7 +6667,7 @@ var supportsEventListenerOptions = (function() {
 		});
 		window.addEventListener('e', null, options);
 	} catch (e) {
-		// continue regardless of error
+		// continue regardless of errors
 	}
 	return supports;
 }());
@@ -9424,7 +9424,7 @@ var core_helpers = function() {
 		function(x) {
 			var exponent = Math.log(x) * Math.LOG10E; // Math.LOG10E = 1 / Math.LN10.
 			// Check for whole powers of 10,
-			// which due to floating point rounding error should be corrected.
+			// which due to floating point rounding errors should be corrected.
 			var powerOf10 = Math.round(exponent);
 			var isPowerOf10 = x === Math.pow(10, powerOf10);
 
@@ -10909,7 +10909,7 @@ var core_scale = core_element.extend({
 			tickEnd = me.left + tl;
 		}
 
-		var epsilon = 0.0000001; // 0.0000001 is margin in pixels for Accumulated error.
+		var epsilon = 0.0000001; // 0.0000001 is margin in pixels for Accumulated errors.
 
 		helpers$1.each(ticks, function(tick, index) {
 			// autoskipper skipped this tick (#4635)

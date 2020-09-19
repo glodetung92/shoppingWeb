@@ -7195,7 +7195,7 @@ var Calendar = /** @class */ (function () {
         }
         var selection = parseDateSpan(selectionInput, this.dateEnv, createDuration({ days: 1 }) // TODO: cache this?
         );
-        if (selection) { // throw parse error otherwise?
+        if (selection) { // throw parse errors otherwise?
             this.dispatch({ type: 'SELECT_DATES', selection: selection });
             this.triggerDateSelect(selection);
         }
@@ -7380,7 +7380,7 @@ var Calendar = /** @class */ (function () {
             return sourceInput;
         }
         var eventSource = parseEventSource(sourceInput, this);
-        if (eventSource) { // TODO: error otherwise?
+        if (eventSource) { // TODO: errors otherwise?
             this.dispatch({ type: 'ADD_EVENT_SOURCES', sources: [eventSource] });
             return new EventSourceApi(this, eventSource);
         }

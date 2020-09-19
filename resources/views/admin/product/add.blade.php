@@ -7,7 +7,7 @@
 @section('css')
     <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admins/product/add/add.css') }}" rel="stylesheet" />
-    
+
 @endsection
 
 
@@ -18,8 +18,8 @@
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                        @foreach ($errors->all() as $errors)
+                            <li>{{ $errors }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -72,7 +72,7 @@
 
                             <div class="form-group">
                                 <label>Chọn danh mục</label>
-                                <select class="form-control select2_init @error('category_id') is-invalid @enderror" 
+                                <select class="form-control select2_init @error('category_id') is-invalid @enderror"
                                         name="category_id">
                                 <option value="0">Chọn danh mục</option>
                                 {{!! $htmlOption !!}}
@@ -85,14 +85,14 @@
                             <div class="form-group">
                                 <label>Nhập tag cho sản phẩm</label>
                                 <select name="tags[]" class="form-control tags_select_choose" multiple="multiple">
-                                    
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nhập nội dung</label>
-                                <textarea 
+                                <textarea
                                     class="form-control my-editor @error('contents') is-invalid @enderror"
                                     name="contents"
                                     rows="8">{{ old('contents') }}</textarea>
@@ -107,9 +107,9 @@
                     </div>
                 </div>
             </div>
-        </form>    
+        </form>
     </div>
-  
+
 @endsection
 
 @section('js')

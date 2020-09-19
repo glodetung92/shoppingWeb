@@ -16,7 +16,7 @@
  * Note that .scale() and .add() return the same modified object
  * instead of making a new one.
  *
- * V. 1.1: Fix error handling so e.g. parsing an empty string does
+ * V. 1.1: Fix errors handling so e.g. parsing an empty string does
  * produce a color rather than just crashing.
  */ 
 

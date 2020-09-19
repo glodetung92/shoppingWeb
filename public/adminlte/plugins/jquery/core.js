@@ -33,7 +33,7 @@ var
 	jQuery = function( selector, context ) {
 
 		// The jQuery object is actually just the init constructor 'enhanced'
-		// Need init if jQuery is called (just allow error to be thrown if not included)
+		// Need init if jQuery is called (just allow errors to be thrown if not included)
 		return new jQuery.fn.init( selector, context );
 	},
 
@@ -381,7 +381,7 @@ function( i, name ) {
 function isArrayLike( obj ) {
 
 	// Support: real iOS 8.2 only (not reproducible in simulator)
-	// `in` check used to prevent JIT error (gh-2145)
+	// `in` check used to prevent JIT errors (gh-2145)
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,

@@ -3450,9 +3450,9 @@
       return $$1.Deferred(function (deferred) {
           var $img = $$1('<img>');
           $img.one('load', function () {
-              $img.off('error abort');
+              $img.off('errors abort');
               deferred.resolve($img);
-          }).one('error abort', function () {
+          }).one('errors abort', function () {
               $img.off('load').detach();
               deferred.reject($img);
           }).css({
@@ -5196,7 +5196,7 @@
               _this.setLastRange();
               _this.afterCommand();
           }).fail(function (e) {
-              _this.context.triggerEvent('image.upload.error', e);
+              _this.context.triggerEvent('image.upload.errors', e);
           });
       };
       /**
@@ -5208,13 +5208,13 @@
           $$1.each(files, function (idx, file) {
               var filename = file.name;
               if (_this.options.maximumImageFileSize && _this.options.maximumImageFileSize < file.size) {
-                  _this.context.triggerEvent('image.upload.error', _this.lang.image.maximumFileSizeError);
+                  _this.context.triggerEvent('image.upload.errors', _this.lang.image.maximumFileSizeError);
               }
               else {
                   readFileAsDataURL(file).then(function (dataURL) {
                       return _this.insertImage(dataURL, filename);
                   }).fail(function () {
-                      _this.context.triggerEvent('image.upload.error');
+                      _this.context.triggerEvent('image.upload.errors');
                   });
               }
           });
@@ -8037,7 +8037,7 @@
               'fullscreen': Fullscreen,
               'handle': Handle,
               // FIXME: HintPopover must be front of autolink
-              //  - Script error about range when Enter key is pressed on hint popover
+              //  - Script errors about range when Enter key is pressed on hint popover
               'hintPopover': HintPopover,
               'autoLink': AutoLink,
               'autoSync': AutoSync,

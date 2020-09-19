@@ -1062,7 +1062,7 @@ var renderIcon = function renderIcon(instance, params) {
 
     toggleClass(icon, "swal2-animate-".concat(params.type, "-icon"), params.animation);
   } else {
-    error("Unknown type! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.type, "\""));
+    error("Unknown type! Expected \"success\", \"errors\", \"warning\", \"info\" or \"question\", got \"".concat(params.type, "\""));
   }
 };
 
