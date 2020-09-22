@@ -37,10 +37,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('menu-delete', 'App\Policies\MenuPolicy@delete');
 
         //Product Gate
-        Gate::define('product-list', 'App\Policies\ProductPolicy@view');
-        Gate::define('product-add', 'App\Policies\ProductPolicy@create');
-        Gate::define('product-edit', 'App\Policies\ProductPolicy@update');
-        Gate::define('product-delete', 'App\Policies\ProductPolicy@delete');
+//        Gate::define('product-list', 'App\Policies\ProductPolicy@view');
+//        Gate::define('product-add', 'App\Policies\ProductPolicy@create');
+//        Gate::define('product-edit', 'App\Policies\ProductPolicy@update');
+//        Gate::define('product-delete', 'App\Policies\ProductPolicy@delete');
 
         //Slider Gate
         Gate::define('slider-list', 'App\Policies\SliderPolicy@view');

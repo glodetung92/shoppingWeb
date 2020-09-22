@@ -4,7 +4,7 @@
     <title>List Product</title>
 @endsection
 
-@section('css')
+@section('css1')
     <link rel="stylesheet" href="{{ asset('admins/product/index/list.css') }}">
 @endsection
 
@@ -35,12 +35,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($products as $productItem)  
+                            @foreach ($products as $productItem)
                                 <tr>
                                     <th>{{ $productItem->id }}</th>
                                     <td>{{ $productItem->name }}</td>
                                     <td>{{ number_format($productItem->price) }}</td>
-                                    <td><img class="product_image_150_100" 
+                                    <td><img class="product_image_150_100"
                                              src="{{ $productItem->feature_image_path }}" /></td>
                                     <td>{{ optional($productItem->category)->name }}</td>
                                     <td>
@@ -50,7 +50,7 @@
                                            class="btn btn-danger action_delete">Delete</a>
                                     </td>
                                 </tr>
-                            @endforeach    
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -62,4 +62,3 @@
         </div>
     </div>
 @endsection
-  

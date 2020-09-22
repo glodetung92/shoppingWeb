@@ -4,7 +4,7 @@
     <title>Add Product</title>
 @endsection
 
-@section('css')
+@section('css1')
     <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admins/product/add/add.css') }}" rel="stylesheet" />
 
@@ -14,17 +14,6 @@
 @section('content')
     <div class="content-wrapper">
         @include('partials.content-header', ['name'=>'Product','key'=>'Add'])
-        {{-- <div class="col-md-12">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $errors)
-                            <li>{{ $errors }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div> --}}
         <form action = "{{ route('product.store') }}" method="post" enctype="multipart/form-data">
         @csrf
             <div class="content">
@@ -34,25 +23,19 @@
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
                                 <input type="text"
-                                    class="form-control @error('name') is-invalid @enderror"
+                                    class="form-control"
                                     name="name"
                                     placeholder="Nhập tên sản phẩm"
                                     value="{{ old('name') }}">
-                                    @error('name')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                             </div>
 
                             <div class="form-group">
                                 <label>Giá sản phẩm</label>
                                 <input type="text"
-                                    class="form-control @error('price') is-invalid @enderror"
+                                    class="form-control"
                                     name="price"
                                     placeholder="Nhập giá sản phẩm"
                                     value="{{ old('price') }}">
-                                    @error('price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                             </div>
 
                             <div class="form-group">
@@ -71,15 +54,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn danh mục</label>
-                                <select class="form-control select2_init @error('category_id') is-invalid @enderror"
-                                        name="category_id">
-                                <option value="0">Chọn danh mục</option>
-                                {{!! $htmlOption !!}}
+                                <select class="form-control select2_init"
+                                        name="category">
+                                    <option value="">Chọn danh mục</option>
+                                    {!! $htmlOption !!}
                                 </select>
-                                @error('category')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <div class="form-group">
@@ -93,12 +72,9 @@
                             <div class="form-group">
                                 <label>Nhập nội dung</label>
                                 <textarea
-                                    class="form-control my-editor @error('contents') is-invalid @enderror"
+                                    class="form-control my-editor"
                                     name="contents"
                                     rows="8">{{ old('contents') }}</textarea>
-                                    @error('content')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                             </div>
                         </div>
                         <div class="col-md-12">

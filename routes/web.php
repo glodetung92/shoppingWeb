@@ -85,13 +85,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [
             'as' => 'product.index',
             'uses' => 'AdminProductController@index',
-            'middleware' => 'can:product-list'
+//            'middleware' => 'can:product-list'
 
         ]);
         Route::get('/create', [
             'as' => 'product.create',
             'uses' => 'AdminProductController@create',
-            'middleware' => 'can:product-add'
+//            'middleware' => 'can:product-add'
         ]);
         Route::post('/store', [
             'as' => 'product.store',
@@ -102,7 +102,7 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminProductController@edit',
             'middleware' => 'can:product-edit'
         ]);
-        Route::post('/update', [
+        Route::post('/update/{id}', [
             'as' => 'product.update',
             'uses' => 'AdminProductController@update'
         ]);
@@ -146,7 +146,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [
             'as' => 'settings.index',
             'uses' => 'AdminSettingController@index',
-            'middleware' => 'can:setting-list'
+
         ]);
         Route::get('/create', [
             'as' => 'settings.create',

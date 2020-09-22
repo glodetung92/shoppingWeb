@@ -10,9 +10,9 @@ use App\Product;
 use App\ProductImage;
 use App\Tag;
 use App\ProductTag;
-use Storage;
+use Illuminate\Database\Query\Builder;
 use App\Traits\StorageImageTrait;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ProductAddRequest;
 
@@ -25,6 +25,7 @@ class AdminProductController extends Controller
     private $productImage;
     private $tag;
     private $productTag;
+
     public function __construct(Category $category, Product $product, ProductImage $productImage,
                                 Tag $tag, ProductTag $productTag)
     {
@@ -54,6 +55,7 @@ class AdminProductController extends Controller
 
     public function store(ProductAddRequest $request)
     {
+
         try {
             DB::beginTransaction();
             $dataProductCreate = [
@@ -61,15 +63,17 @@ class AdminProductController extends Controller
                 'price' => $request->price,
                 'content' => $request->contents,
                 'user_id' => auth()->id(),
-                'category_id' => $request->category_id
+                'category_id' => $request->category
 
             ];
             $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');
 
             if (!empty($dataUploadFeatureImage)) {
+
                 $dataProductCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
                 $dataProductCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
+
             $product = $this->product->create($dataProductCreate);
 
             // insert data to product_images
@@ -120,7 +124,7 @@ class AdminProductController extends Controller
                 'price' => $request->price,
                 'content' => $request->contents,
                 'user_id' => auth()->id(),
-                'category_id' => $request->category_id
+                'category_id' => $request->parent_id
 
             ];
             $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');

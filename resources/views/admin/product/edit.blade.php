@@ -2,12 +2,12 @@
 
 @section('title')
     <title>Edit Product</title>
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('css')
-    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('admins/product/add/add.css') }}" rel="stylesheet" />
-    
+@section('css1')
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admins/product/add/add.css') }}" rel="stylesheet">
 @endsection
 
 
@@ -26,7 +26,7 @@
                                     class="form-control"
                                     name="name"
                                     placeholder="Nhập tên sản phẩm"
-                                    value = "{{ $product->name }}">                                    
+                                    value = "{{ $product->name }}">
                             </div>
 
                             <div class="form-group">
@@ -63,24 +63,24 @@
                                         @foreach ($product->productImages as $productImageItem)
                                         <div class="col-md-3">
                                             <img class="image_detail_product" src="{{ $productImageItem->image_path }}" alt="" />
-                                        </div>    
+                                        </div>
                                         @endforeach
                                     </div>
-                                </div>    
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Chọn danh mục</label>
-                                <select class="form-control select2_init" name="category_id">
-                                <option value="0">Chọn danh mục</option>
-                                {{!! $htmlOption !!}}
+                                <select class="form-control select2_init" name="parent_id">
+                                <option value="">Chọn danh mục</option>
+                                {!! $htmlOption !!}
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Nhập tag cho sản phẩm</label>
                                 <select name="tags[]" class="form-control tags_select_choose" multiple="multiple">
-                                @foreach ($product->tags as $tagItem)
+                                @foreach ($product->tags as $tagItem)
                                     <option value="{{ $tagItem->name }}" selected>{{ $tagItem->name }}</option>
                                 @endforeach
                                 </select>
@@ -89,7 +89,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nhập nội dung</label>
-                                <textarea 
+                                <textarea
                                     class="form-control my-editor"
                                     name="contents"
                                     rows="8">{{ $product->content }}</textarea>
@@ -101,13 +101,13 @@
                     </div>
                 </div>
             </div>
-        </form>    
+        </form>
     </div>
-  
+
 @endsection
 
 @section('js')
     <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.7/tinymce.min.js" integrity="sha512-h6MYNK2gP1rnipfazcBIBGAJ0ot4xOHV4G1lq44mCR5c2PfqMZBa8YW0nbD21rVhYq0wB+TIe31NDvqPvTJxuQ==" crossorigin="anonymous"></script>
     <script src="{{ asset('admins/product/add/add.js') }}"></script>
 @endsection
