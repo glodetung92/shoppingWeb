@@ -100,7 +100,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [
             'as' => 'product.edit',
             'uses' => 'AdminProductController@edit',
-            'middleware' => 'can:product-edit'
+//            'middleware' => 'can:product-edit'
         ]);
         Route::post('/update/{id}', [
             'as' => 'product.update',
@@ -109,7 +109,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'product.delete',
             'uses' => 'AdminProductController@delete',
-            'middleware' => 'can:product-delete'
+//            'middleware' => 'can:product-delete'
         ]);
     });
     Route::prefix('slider')->group(function () {
